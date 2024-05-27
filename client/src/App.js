@@ -1,16 +1,41 @@
 import React from "react";
-import "./App.css";
-import {Container} from "semantic-ui-react"; 
-import CityLife from "./cityLife";
+import { CssBaseline } from "@mui/material";
+import TopBar from "./scenes/global/TopBar";
+import SearchBar from "./scenes/searchBar/SearchBar";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#ff0000', // red
+    },
+  },
+});
 
 function App() {
   return (
-    <div>
-      <Container>
-        <CityLife />
-        </Container>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div className="app">
+        <main
+          className="content"
+          style={{ paddingLeft: "80px", paddingRight: "80px" }}>
+          <TopBar />
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <SearchBar />
+          </div>
+        </main>
+      </div>
+    </ThemeProvider>
   );
 }
 
 export default App;
+
+{
+  /* <div>
+<Container>
+  <CityLife />
+  </Container>
+</div> */
+}
