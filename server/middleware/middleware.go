@@ -67,7 +67,6 @@ func GetAllEvents(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(payload)
 }
 
-// CreateEvent is a function that creates a new event
 func CreateEvent(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/x-www-form-urlencoded")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
@@ -75,6 +74,7 @@ func CreateEvent(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
 	var event models.Event
+
 	json.NewDecoder(r.Body).Decode(&event)
 	createEvent(event)
 	json.NewEncoder(w).Encode(event)
@@ -133,7 +133,7 @@ func createEvent(event models.Event) {
 		log.Fatal(err)
 	}
 
-	fmt.Println("Inserted event with title:", event.Title)
+	fmt.Println("Inserted event:", event)
 }
 
 // func getEvent(id string) models.Event {
