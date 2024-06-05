@@ -19,7 +19,7 @@ import {
 import CountrySelect from './countrySelect';
 import { createEvent } from "../../api/events";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
-import { Event } from "../../models/Event";
+import { SoccerEvent } from "../../models/Event";
 
 const TopBar = () => {
   const [open, setOpen] = useState(false);
@@ -40,7 +40,7 @@ const TopBar = () => {
   const handleSaveEvent = (e) => {
     e.preventDefault();
   
-    const event = new Event('', selectedTitle, 1, selectedHomeCountry, selectedAwayCountry, selectedDate, selectedTime);
+    const event = new SoccerEvent('', selectedTitle, 1, selectedHomeCountry, selectedAwayCountry, selectedDate, selectedTime);
   
     createEvent(event);
   };
@@ -75,7 +75,7 @@ const TopBar = () => {
         City Life
       </Typography>
       <Box display="flex" justifyContent="flex-end">
-        <Button
+        {/* <Button
           variant="contained"
           startIcon={<AddIcon />}
           onClick={handleOpen}
@@ -91,7 +91,7 @@ const TopBar = () => {
             },
           }}>
           Add Event
-        </Button>
+        </Button> */}
         <Button
           variant="contained"
           startIcon={<AddIcon />}

@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Ned Kelly's Australian Bar",
+        "mapsLink": "https://www.google.com/maps?gs_lcrp=EgZjaHJvbWUqEAgCEC4YrwEYxwEYgAQYjgUyBwgAEAAYjwIyBwgBEC4YgAQyEAgCEC4YrwEYxwEYgAQYjgUyCggDEC4Y1AIYgAQyCggEEC4Y1AIYgAQyBwgFEAAYgAQyBwgGEAAYgAQyBwgHEAAYgAQyBwgIEAAYgAQyBwgJEAAYgATSAQg0NTI4ajBqN6gCALACAA&um=1&ie=UTF-8&fb=1&gl=de&sa=X&geocode=KaPtmbn0dZ5HMb-w9JKGtTBb&daddr=Frauenplatz+11,+80331+M%C3%BCnchen",
+        "websiteLink": "https://nedkellysbar.de/",
+        "phoneNumber": "089 242 198 99",
+        "seats": 100,
+        "ticketRequired": false,
+        "reservationRequired": false,
+        "image": "",
+        "latitude": 48.13896758341351,
+        "longitude": 11.574655440496107
+    },
+    {
+        "name": "Kilians Irish Pub",
+        "mapsLink": "https://www.google.com/maps?gs_lcrp=EgZjaHJvbWUqEAgCEC4YrwEYxwEYgAQYjgUyBwgAEAAYjwIyBwgBEC4YgAQyEAgCEC4YrwEYxwEYgAQYjgUyCggDEC4Y1AIYgAQyCggEEC4Y1AIYgAQyBwgFEAAYgAQyBwgGEAAYgAQyBwgHEAAYgAQyBwgIEAAYgAQyBwgJEAAYgATSAQg0NTI4ajBqN6gCALACAA&um=1&ie=UTF-8&fb=1&gl=de&sa=X&geocode=KaPtmbn0dZ5HMb-w9JKGtTBb&daddr=Frauenplatz+11,+80331+M%C3%BCnchen",
+        "websiteLink": "https://kiliansirishpub.de/",
+        "phoneNumber": "089 242 198 99",
+        "seats": 100,
+        "ticketRequired": false,
+        "reservationRequired": false,
+        "image": "",
+        "latitude": 48.13896758341351,
+        "longitude": 11.574655440496107
+    }
+]

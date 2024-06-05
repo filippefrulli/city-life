@@ -55,11 +55,94 @@ func createDBInstance() {
 	if collection == nil {
 		log.Fatal("Failed to get collection")
 	} else {
-		fmt.Println("Collection instance created! ")
+		fmt.Println("Collection instance created!")
 	}
+
+	_, delErr := collection.DeleteMany(context.Background(), bson.D{{}})
+	if delErr != nil {
+		log.Fatal(delErr)
+	} else {
+		fmt.Println("All events deleted successfully!")
+	}
+
+	importEvents()
+	importLocations()
 }
 
-// GetAllEvents is a function that returns all events
+func importEvents() {
+	file, err := os.Open("data/euroEvents.json")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	var events []models.SoccerEvent
+	if err := json.NewDecoder(file).Decode(&events); err != nil {
+		log.Fatal(err)
+	}
+
+	for _, event := range events {
+		_, err := collection.InsertOne(context.TODO(), bson.M{
+			"_id":         primitive.NewObjectID(),
+			"description": event.Description,
+			"homeLogo":    event.HomeLogo,
+			"awayLogo":    event.AwayLogo,
+			"homeTeam":    event.HomeTeam,
+			"awayTeam":    event.AwayTeam,
+			"date":        event.Date,
+			"time":        event.Time,
+			"eventLogo":   event.EventLogo,
+		})
+		if err != nil {
+			log.Fatal(err)
+		} else {
+			fmt.Println("Inserted event:", event)
+
+		}
+	}
+
+	fmt.Println("Events imported successfully!")
+}
+
+func importLocations() {
+	file, err := os.Open("data/locations.json")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	var locations []models.Location
+	if err := json.NewDecoder(file).Decode(&locations); err != nil {
+		log.Fatal(err)
+	}
+
+	for _, location := range locations {
+		_, err := collection.InsertOne(context.TODO(), bson.M{
+			"_id":                 primitive.NewObjectID(),
+			"name":                location.Name,
+			"mapsLink":            location.MapsLink,
+			"websiteLink":         location.WebsiteLink,
+			"phoneNumber":         location.PhoneNumber,
+			"seats":               location.Seats,
+			"ticketRequired":      location.TicketRequired,
+			"reservationRequired": location.ReservationRequired,
+			"image":               location.Image,
+		})
+		if err != nil {
+			log.Fatal(err)
+		} else {
+			fmt.Println("Inserted location:", location)
+
+		}
+	}
+
+	fmt.Println("Locations imported successfully!")
+}
+
+/*
+EVENT FUNCTIONS
+*/
+
 func GetAllEvents(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/x-www-form-urlencoded")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
@@ -73,27 +156,31 @@ func CreateEvent(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Methods", "POST")
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
-	var event models.Event
+	var event models.SoccerEvent
 
 	json.NewDecoder(r.Body).Decode(&event)
 	createEvent(event)
 	json.NewEncoder(w).Encode(event)
 }
 
-// GetEvent is a function that returns a single event
-func GetEvent(w http.ResponseWriter, r *http.Request) {
+func AddLocationToEvent(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/x-www-form-urlencoded")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Access-Control-Allow-Methods", "GET")
+	w.Header().Set("Access-Control-Allow-Methods", "PUT")
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
+	params := mux.Vars(r)
+	eventID, _ := primitive.ObjectIDFromHex(params["id"])
+	locationID, _ := primitive.ObjectIDFromHex(params["locationId"])
+
+	filter := bson.M{"_id": eventID}
+	update := bson.M{"$push": bson.M{"locations": locationID}}
+	_, err := collection.UpdateOne(context.Background(), filter, update)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
-// UpdateEvent is a function that updates an event
-func UpdateEvent(w http.ResponseWriter, r *http.Request) {
-
-}
-
-// DeleteEvent is a function that deletes an event
 func DeleteEvent(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/x-www-form-urlencoded")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
@@ -104,15 +191,42 @@ func DeleteEvent(w http.ResponseWriter, r *http.Request) {
 	deleteEvent(params["id"])
 }
 
-func getAllEvents() []primitive.M {
+func GetLocationsOfEvent(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/x-www-form-urlencoded")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
+	vars := mux.Vars(r)
+	eventID, err := primitive.ObjectIDFromHex(vars["id"])
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	locations, err := getLocationsOfEvent(eventID)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	json.NewEncoder(w).Encode(locations)
+}
+
+func getAllEvents() []models.SoccerEvent {
+	if collection == nil {
+		log.Fatal("Collection is nil")
+	}
+
 	cur, err := collection.Find(context.Background(), bson.D{{}})
 	if err != nil {
 		log.Fatal(err)
 	}
+	if cur == nil {
+		log.Fatal("Cursor is nil")
+	}
 
-	var events []primitive.M
+	var events []models.SoccerEvent
 	for cur.Next(context.Background()) {
-		var event bson.M
+		var event models.SoccerEvent
 		if err := cur.Decode(&event); err != nil {
 			log.Fatal(err)
 		}
@@ -127,7 +241,8 @@ func getAllEvents() []primitive.M {
 	return events
 }
 
-func createEvent(event models.Event) {
+func createEvent(event models.SoccerEvent) {
+	event.ID = primitive.NewObjectID()
 	_, err := collection.InsertOne(context.TODO(), event)
 	if err != nil {
 		log.Fatal(err)
@@ -135,17 +250,6 @@ func createEvent(event models.Event) {
 
 	fmt.Println("Inserted event:", event)
 }
-
-// func getEvent(id string) models.Event {
-// 	var event models.Event
-// 	objID, _ := primitive.ObjectIDFromHex(id)
-// 	filter := bson.M{"_id": objID}
-// 	err := collection.FindOne(context.Background(), filter).Decode(&event)
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-// 	return event
-// }
 
 func deleteEvent(id string) {
 	objID, _ := primitive.ObjectIDFromHex(id)
@@ -155,4 +259,111 @@ func deleteEvent(id string) {
 		log.Fatal(err)
 	}
 	fmt.Println("Deleted document", d.DeletedCount)
+}
+
+func getLocationsOfEvent(eventId primitive.ObjectID) ([]models.Location, error) {
+	if collection == nil {
+		log.Fatal("Collection is nil")
+	}
+
+	// Find the event with the given ID
+	eventFilter := bson.D{{Key: "_id", Value: eventId}}
+	var event models.SoccerEvent
+	err := collection.FindOne(context.Background(), eventFilter).Decode(&event)
+	if err != nil {
+		return nil, err
+	}
+
+	// Convert ObjectIDs to interface slice for the $in operator
+	var locationIDs []interface{}
+	for _, id := range event.Locations {
+		locationIDs = append(locationIDs, id)
+	}
+
+	// Find all locations with IDs in the event's location list
+	locationFilter := bson.D{{Key: "_id", Value: bson.D{{Key: "$in", Value: locationIDs}}}}
+	cur, err := collection.Find(context.Background(), locationFilter)
+	if err != nil {
+		return nil, err
+	}
+
+	// Decode the location data
+	var locations []models.Location
+	for cur.Next(context.Background()) {
+		var location models.Location
+		if err := cur.Decode(&location); err != nil {
+			return nil, err
+		}
+		locations = append(locations, location)
+	}
+
+	if err := cur.Err(); err != nil {
+		return nil, err
+	}
+	cur.Close(context.Background())
+
+	return locations, nil
+}
+
+/*
+LOCATIONS FUNCTIONS
+*/
+
+func GetAllLocations(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/x-www-form-urlencoded")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	payload := getAllLocations()
+	json.NewEncoder(w).Encode(payload)
+}
+
+func CreateLocation(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/x-www-form-urlencoded")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
+	var location models.Location
+
+	json.NewDecoder(r.Body).Decode(&location)
+	createLocation(location)
+	json.NewEncoder(w).Encode(location)
+}
+
+func createLocation(event models.Location) {
+	_, err := collection.InsertOne(context.TODO(), event)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("Inserted location:", event)
+}
+
+func getAllLocations() []models.Location {
+	if collection == nil {
+		log.Fatal("Collection is nil")
+	}
+
+	cur, err := collection.Find(context.Background(), bson.D{{}})
+	if err != nil {
+		log.Fatal(err)
+	}
+	if cur == nil {
+		log.Fatal("Cursor is nil")
+	}
+
+	var locations []models.Location
+	for cur.Next(context.Background()) {
+		var location models.Location
+		if err := cur.Decode(&location); err != nil {
+			log.Fatal(err)
+		}
+		locations = append(locations, location)
+	}
+
+	if err := cur.Err(); err != nil {
+		log.Fatal(err)
+	}
+	cur.Close(context.Background())
+
+	return locations
 }

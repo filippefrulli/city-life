@@ -1,30 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { getAllEvents } from "../../api/events";
-import EventCard from "./EventCard";
 import { Divider } from "@mui/material";
 import { Link } from "react-router-dom";
+import { getAllLocations } from "../../api/locations";
 
-const EventList = () => {
-  const [events, setEvents] = useState([]);
+const LocationList = () => {
+  const [locations, setLocations] = useState([]);
 
   useEffect(() => {
-    getAllEvents().then((res) => {
-      setEvents(res);
+    getAllLocations().then((res) => {
+        setLocations(res);
     });
   }, []);
 
   return (
     <div>
       {Object.entries(
-        events.reduce((groups, event) => {
-          const date = event.date;
+        locations.reduce((groups, location) => {
+          const date = location.date;
           if (!groups[date]) {
             groups[date] = [];
           }
-          groups[date].push(event);
+          groups[date].push(location);
           return groups;
         }, {})
-      ).map(([date, events]) => (
+      ).map(([date, locations]) => (
         <div key={date}>
           <h3 style={{ paddingTop: "30px", margin: "0" }}>
             {new Date(date).toLocaleDateString("en-US", {
@@ -34,12 +33,10 @@ const EventList = () => {
             })}
           </h3>
           <Divider style={{ width: 400, backgroundColor: "black" }} />
-          {events
-            .filter((event) => event.description)
-            .map((event, index) => (
-              <Link to={`/event/${event._id}`} key={index}>
-                <EventCard event={event} index={index} />
-              </Link>
+          {locations
+            .filter((location) => location.description)
+            .map((location, index) => (
+                <LocationCard location={location} index={index} />
             ))}
         </div>
       ))}
@@ -47,4 +44,4 @@ const EventList = () => {
   );
 };
 
-export default EventList;
+export default LocationList;

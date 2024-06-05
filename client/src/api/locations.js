@@ -1,10 +1,9 @@
 import axios from 'axios';
 
-export const createEvent = async (newEvent) => {
+export const createEvent = async (newLocation) => {
 
-    if (newEvent) {
-        console.log("THE EVENT:", newEvent);
-        axios.post("http://localhost:9000/api/event", newEvent, {
+    if (newLocation) {b 
+        axios.post("http://localhost:9000/api/location", newLocation, {
             headers: {
                 "Content-Type": "application/json",
             }
@@ -16,9 +15,9 @@ export const createEvent = async (newEvent) => {
     }
 }
 
-export const getAllEvents = async () => {
+export const getAllLocations = async () => {
 
-    return axios.get("http://localhost:9000/api/events")
+    return axios.get("http://localhost:9000/api/locations")
         .then((res) => {
             return res.data;
         }).catch((err) => {
