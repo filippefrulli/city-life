@@ -127,6 +127,8 @@ func importLocations() {
 			"ticketRequired":      location.TicketRequired,
 			"reservationRequired": location.ReservationRequired,
 			"image":               location.Image,
+			"latitude":            location.Latitude,
+			"longitude":           location.Longitude,
 		})
 		if err != nil {
 			log.Fatal(err)
@@ -148,6 +150,21 @@ func GetAllEvents(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	payload := getAllEvents()
 	json.NewEncoder(w).Encode(payload)
+}
+
+func GetEventById(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/x-www-form-urlencoded")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
+	vars := mux.Vars(r)
+	id := vars["id"]
+	event, err := getEventById(id)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	json.NewEncoder(w).Encode(event)
 }
 
 func CreateEvent(w http.ResponseWriter, r *http.Request) {
@@ -239,6 +256,22 @@ func getAllEvents() []models.SoccerEvent {
 	cur.Close(context.Background())
 
 	return events
+}
+
+func getEventById(id string) (models.SoccerEvent, error) {
+	if collection == nil {
+		log.Fatal("Collection is nil")
+	}
+
+	objID, _ := primitive.ObjectIDFromHex(id)
+	filter := bson.M{"_id": objID}
+	var event models.SoccerEvent
+	err := collection.FindOne(context.Background(), filter).Decode(&event)
+	if err != nil {
+		return models.SoccerEvent{}, err
+	}
+
+	return event, nil
 }
 
 func createEvent(event models.SoccerEvent) {

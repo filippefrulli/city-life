@@ -19,7 +19,7 @@ import {
 import CountrySelect from './countrySelect';
 import { createEvent } from "../../api/events";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
-import { SoccerEvent } from "../../models/Event";
+import { SoccerEvent } from "../../models/Models";
 
 const TopBar = () => {
   const [open, setOpen] = useState(false);

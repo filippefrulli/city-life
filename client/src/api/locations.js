@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const createEvent = async (newLocation) => {
 
-    if (newLocation) {b 
+    if (newLocation) {
         axios.post("http://localhost:9000/api/location", newLocation, {
             headers: {
                 "Content-Type": "application/json",

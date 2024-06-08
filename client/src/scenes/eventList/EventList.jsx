@@ -37,7 +37,11 @@ const EventList = () => {
           {events
             .filter((event) => event.description)
             .map((event, index) => (
-              <Link to={`/event/${event._id}`} key={index}>
+              <Link
+                to={{
+                  pathname: `/event/${event._id}`,
+                }}
+                key={index}>
                 <EventCard event={event} index={index} />
               </Link>
             ))}

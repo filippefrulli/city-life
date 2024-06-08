@@ -1,5 +1,5 @@
 import React from 'react';
-import TopBar from './TopBar';
+import TopBar from '../global/TopBar';  
 import SearchBar from './SearchBar';
 import EventList from './EventList';
 

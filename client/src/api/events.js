@@ -25,3 +25,13 @@ export const getAllEvents = async () => {
             console.log(err);
         });
 }
+
+export const getEventById = async (id) => {
+
+    return axios.get("http://localhost:9000/api/event/" + id)
+        .then((res) => {
+            return res.data;
+        }).catch((err) => {
+            console.log(err);
+        });
+}

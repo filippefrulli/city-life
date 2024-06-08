@@ -7,7 +7,7 @@
         "seats": 100,
         "ticketRequired": false,
         "reservationRequired": false,
-        "image": "",
+        "image": "a",
         "latitude": 48.13896758341351,
         "longitude": 11.574655440496107
     },
@@ -19,7 +19,7 @@
         "seats": 100,
         "ticketRequired": false,
         "reservationRequired": false,
-        "image": "",
+        "image": "b",
         "latitude": 48.13896758341351,
         "longitude": 11.574655440496107
     }

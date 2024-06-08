@@ -1,14 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import NewPage from './NewPage';
-import EventsPage from './scenes/eventList/eventsPage';
+import { Routes, Route } from 'react-router-dom';
+import EventsPage from './scenes/eventList/EventsPage';
+import LocationPage from './scenes/locationsList/LocationPage';
 
 const App = () => {
   return (
-    <Router>
-      <Route path="/" exact component={EventsPage} />
-      <Route path="/event/:id" component={LocationsPage} />
-    </Router>
+    <Routes>
+      <Route path="/" element={<EventsPage />} />
+      <Route path="/event/:id" element={<LocationPage />} />
+    </Routes>
   );
 };
 
