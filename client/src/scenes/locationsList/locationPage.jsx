@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import EventTitle from "./EventTitle";
 import { getEventById } from "../../api/events";
+import "./LocationsPage.css";
 
 const LocationsPage = () => {
   const { id } = useParams();
@@ -31,28 +32,21 @@ const LocationsPage = () => {
   };
 
   return (
-    <main
-      className="content"
-      style={{ paddingLeft: "120px", paddingRight: "120px" }}>
+    <main className="content">
       <TopBar />
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}>
-        <ArrowBackIosIcon
-          onClick={goBack}
-          style={{
-            cursor: "pointer",
-            paddingTop: "16px",
-            paddingLeft: "170px",
-            fontSize: "2rem",
-            position: "absolute",
-            left: 0,
-          }}
-        />
-        <EventTitle event={event} />
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <div style={{ position: "relative" }}>
+          <ArrowBackIosIcon
+            onClick={goBack}
+            style={{
+              cursor: "pointer",
+              fontSize: "2rem",
+            }}
+          />
+        </div>
+        <div style={{ paddingLeft: "164px" }}>
+          <EventTitle event={event} />
+        </div>
       </div>
       <div
         style={{
@@ -60,8 +54,8 @@ const LocationsPage = () => {
           justifyContent: "space-between",
           alignItems: "center",
         }}>
-        <div style={{ paddingTop: "30px", paddingLeft: "50px" }}>
-          <LocationList /> {/* Pass the setSelectedLocation function as a prop */}
+        <div style={{ paddingTop: "100px" }}>
+          <LocationList />
         </div>
       </div>
     </main>

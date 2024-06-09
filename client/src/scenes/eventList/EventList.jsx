@@ -41,7 +41,8 @@ const EventList = () => {
                 to={{
                   pathname: `/event/${event._id}`,
                 }}
-                key={index}>
+                key={index}
+                style={{ textDecoration: 'none', color: 'inherit' }}>
                 <EventCard event={event} index={index} />
               </Link>
             ))}

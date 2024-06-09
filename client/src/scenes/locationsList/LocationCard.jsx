@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 
-const LocationCard = ({ location, onSelect }) => {
+const LocationCard = ({ location, onSelect, isSelected }) => {
   const [userLocation, setUserLocation] = useState({ lat: null, lon: null });
-
+  
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -32,7 +32,7 @@ const LocationCard = ({ location, onSelect }) => {
     <Box
       className="card"
       marginTop={2}
-      border={2}
+      border={isSelected ? 4 : 2} // Change this line
       borderColor="black"
       bgcolor="#99CC99"
       width={380}
@@ -41,7 +41,9 @@ const LocationCard = ({ location, onSelect }) => {
       display="flex"
       alignItems="center"
       padding={2}
-      onClick={() => onSelect(location)} // Add an onClick handler that calls onSelect with the location
+      onClick={() => {
+        onSelect(location);
+      }}
     >
       <div
         style={{

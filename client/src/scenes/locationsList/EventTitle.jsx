@@ -9,7 +9,7 @@ const EventTitle = ({ event }) => {
       border={2}
       borderColor="black"
       bgcolor="#FFFFFF"
-      width={450}
+      width={600}
       height={80}
       borderRadius="25px"
       display="flex"
@@ -33,7 +33,9 @@ const EventTitle = ({ event }) => {
         height="40"
         alt={event?.homeTeam}
         style={{ borderRadius: "10px", border: "2px solid black" }}
-        src={event?.homeLogo}></img>
+        src={event?.homeLogo}>
+        </img>
+        <h3 style={{ marginLeft: "8px" }}>{event?.homeTeam}</h3>
       <div
         style={{
           display: "flex",
@@ -48,6 +50,7 @@ const EventTitle = ({ event }) => {
         </h5>
         <h3 style={{ margin: "0" }}>{event?.time}</h3>
       </div>
+      <h3 style={{ marginRight: "8px" }}>{event?.awayTeam}</h3>
       <img
         height="40"
         alt={event?.awayTeam}

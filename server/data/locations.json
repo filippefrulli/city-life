@@ -7,7 +7,7 @@
         "seats": 100,
         "ticketRequired": false,
         "reservationRequired": false,
-        "image": "a",
+        "image": "https://lh3.googleusercontent.com/p/AF1QipP9ibm5dheeKMXbHMRToa5AFZ_GVk0RVXEuSxtu=s1360-w1360-h1020",
         "latitude": 48.13896758341351,
         "longitude": 11.574655440496107
     },
@@ -19,8 +19,80 @@
         "seats": 100,
         "ticketRequired": false,
         "reservationRequired": false,
-        "image": "b",
+        "image": "https://lh3.googleusercontent.com/p/AF1QipMZVUIeoTEDynQwA7Tzmloneu4PwJgx85-JgQRB=s1360-w1360-h1020",
         "latitude": 48.13896758341351,
         "longitude": 11.574655440496107
+    },
+    {
+        "name": "Löwenbräukeller - Das Original",
+        "mapsLink": "https://www.google.com/maps/dir//L%C3%B6wenbr%C3%A4ukeller+-+Das+Original,+Stiglmaierplatz,+Nymphenburger+Str.+2,+80335+M%C3%BCnchen/@48.1479704,11.5559325,17z/data=!3m1!5s0x479e75e36ea89567:0xf16611b42a07b7ad!4m17!1m7!3m6!1s0x479e75bfd75de0d9:0xe27bdb3a03f87a0f!2sL%C3%B6wenbr%C3%A4ukeller+-+Das+Original!8m2!3d48.1479704!4d11.5585074!16s%2Fm%2F0hnblrj!4m8!1m0!1m5!1m1!1s0x479e75bfd75de0d9:0xe27bdb3a03f87a0f!2m2!1d11.5585074!2d48.1479704!3e3?entry=ttu",
+        "websiteLink": "https://loewenbraeukeller.com/de",
+        "phoneNumber": "089 998 209 185",
+        "seats": 100,
+        "ticketRequired": false,
+        "reservationRequired": false,
+        "image": "https://lh3.googleusercontent.com/p/AF1QipPgyxQuEVhIm6cIf3FmkCBMpBs7DhdtmhnG7Brb=s1360-w1360-h1020",
+        "latitude": 48.148112508975764,
+        "longitude": 11.55848762144706
+    },
+    {
+        "name": "Augustiner-Keller",
+        "mapsLink": "https://www.google.com/maps/dir//Augustiner-Keller,+Arnulfstra%C3%9Fe+52,+80335+M%C3%BCnchen/@48.1435323,11.5489162,16z/data=!4m17!1m7!3m6!1s0x479e75fdf61ac87b:0x9b4ce0d63cadc05f!2sAugustiner-Keller!8m2!3d48.1435323!4d11.5514911!16s%2Fg%2F11b75hrk7p!4m8!1m0!1m5!1m1!1s0x479e75fdf61ac87b:0x9b4ce0d63cadc05f!2m2!1d11.5514911!2d48.1435323!3e3?entry=ttu",
+        "websiteLink": "http://www.augustinerkeller.de/",
+        "phoneNumber": "089 594 393",
+        "seats": 100,
+        "ticketRequired": false,
+        "reservationRequired": false,
+        "image": "https://lh3.googleusercontent.com/p/AF1QipNIMWnN7HGdR6celB_tP05LInxY-Hxny1jpEDgl=s1360-w1360-h1020",
+        "latitude": 48.14367545097422,
+        "longitude": 11.55152328347801
+    },
+    {
+        "name": "Kennedy's Bar and Restaurant",
+        "mapsLink": "https://www.google.com/maps/dir//Kennedy's+Bar+and+Restaurant,+Sendlinger-Tor-Platz+11,+80336+M%C3%BCnchen/@48.1341114,11.562258,16z/data=!3m1!5s0x479ddf5f348872c5:0x4d134fe148a94f63!4m17!1m7!3m6!1s0x479ddf58cb4a8ecf:0x793c2028134dab93!2sKennedy's+Bar+and+Restaurant!8m2!3d48.1341115!4d11.5671289!16s%2Fg%2F1td7s56t!4m8!1m0!1m5!1m1!1s0x479ddf58cb4a8ecf:0x793c2028134dab93!2m2!1d11.5671289!2d48.1341115!3e3?entry=ttu",
+        "websiteLink": "https://www.kennedysmunich.de/",
+        "phoneNumber": "089 599 884 60",
+        "seats": 100,
+        "ticketRequired": false,
+        "reservationRequired": false,
+        "image": "https://lh3.googleusercontent.com/p/AF1QipOFLcIxsPdVWwgXJE_dIU3o47y6O04xmFu1ia2h=s680-w680-h510",
+        "latitude": 48.13425467724946,
+        "longitude": 11.567096710465771
+    },
+    {
+        "name": "Giesinger Garten",
+        "mapsLink": "https://www.google.com/maps/dir//Giesinger+Garten,+Gerhardstra%C3%9Fe+4,+81543+M%C3%BCnchen/@48.116031,11.5654345,16z/data=!4m17!1m7!3m6!1s0x479ddf6ac5daed51:0x772b29832e11d29f!2sGiesinger+Garten!8m2!3d48.116031!4d11.5680094!16s%2Fg%2F11bbrjtd9p!4m8!1m0!1m5!1m1!1s0x479ddf6ac5daed51:0x772b29832e11d29f!2m2!1d11.5680447!2d48.1159885!3e3?entry=ttu",
+        "websiteLink": "http://www.giesinger-garten.de/",
+        "phoneNumber": "089 201 819 16",
+        "seats": 100,
+        "ticketRequired": false,
+        "reservationRequired": false,
+        "image": "https://lh3.googleusercontent.com/p/AF1QipMBf-Ygfrr7gsDADJxMRPA1fRY_xp4iMg6bqsYA=s1360-w1360-h1020",
+        "latitude": 48.116159902042185,
+        "longitude": 11.568159600664801
+    },
+    {
+        "name": "Giesinger Bräustüberl",
+        "mapsLink": "https://www.google.com/maps/dir//Giesinger+Br%C3%A4ust%C3%BCberl,+Martin-Luther-Stra%C3%9Fe+2,+81539+M%C3%BCnchen/@48.1155384,11.5762004,20.08z/data=!3m1!5s0x479ddf6d22872e13:0xc503f82518a983d!4m17!1m7!3m6!1s0x479ddf6d3e9cc69d:0x67703dced8efff05!2sGiesinger+Br%C3%A4ust%C3%BCberl!8m2!3d48.1155998!4d11.576744!16s%2Fg%2F11b6jddqsy!4m8!1m0!1m5!1m1!1s0x479ddf6d3e9cc69d:0x67703dced8efff05!2m2!1d11.576744!2d48.1155998!3e3?entry=ttu",
+        "websiteLink": "https://www.giesinger-braeu.de/",
+        "phoneNumber": "089 550 621 84",
+        "seats": 100,
+        "ticketRequired": false,
+        "reservationRequired": false,
+        "image": "https://lh3.googleusercontent.com/p/AF1QipMZgrDzFbkx_a7Mttld3EDOURvnGQeKi14nKGAA=s1360-w1360-h1020",
+        "latitude": 48.11561613529985,
+        "longitude": 11.576739651139185
+    },
+    {
+        "name": "Augustiner am Dom",
+        "mapsLink": "https://www.google.com/maps/dir//Augustiner+am+Dom,+Frauenplatz+8,+80331+M%C3%BCnchen/@48.1381917,11.5714906,17z/data=!4m17!1m7!3m6!1s0x479e75f4c27aa9b1:0x21d2ba9070df7b08!2sAugustiner+am+Dom!8m2!3d48.1381917!4d11.5740655!16s%2Fg%2F1tfpht7t!4m8!1m0!1m5!1m1!1s0x479e75f4c27aa9b1:0x21d2ba9070df7b08!2m2!1d11.5740655!2d48.1381917!3e3?entry=ttu",
+        "websiteLink": "http://augustineramdom.de/",
+        "phoneNumber": "089 232 384 80",
+        "seats": 100,
+        "ticketRequired": false,
+        "reservationRequired": false,
+        "image": "https://lh3.googleusercontent.com/p/AF1QipOYslQiCZ2C2HtTVwg5I4Q4TfaSR891iGb2pyYd=s1360-w1360-h1020",
+        "latitude": 48.13837782418007,
+        "longitude": 11.574001123960135
     }
 ]

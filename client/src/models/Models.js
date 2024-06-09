@@ -13,7 +13,7 @@ export class SoccerEvent {
   }
 
   export class Location {
-    constructor(id, name, mapsLink, websiteLink, phoneNumber, seats, ticketRequired, reservationRequired, image, latitude, longitude) {
+    constructor(id, name, mapsLink, websiteLink, phoneNumber, seats, ticketRequired, reservationRequired, image, latitude, longitude, distance) {
       this._id = id || null;
       this.name = name || '';
       this.mapsLink = mapsLink || '';
@@ -25,5 +25,6 @@ export class SoccerEvent {
       this.image = image || '';
       this.latitude = latitude || '';
       this.longitude = longitude || '';
+      this.distance = distance || '';
     }
   }

@@ -1,0 +1,11 @@
+.content {
+    padding-left: 120px;
+    padding-right: 120px;
+  }
+  
+  @media (min-width: 1600px) {
+    .content {
+      padding-left: 440px;
+      padding-right: 440px;
+    }
+  }
